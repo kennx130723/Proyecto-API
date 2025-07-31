@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar Producto</title>
+</head>
+<body>
+    <h1>Eliminar Producto</h1>
+    
+    <!-- Formulario de búsqueda -->
+    <form id="buscarForm">
+        <input type="number" id="buscarId" placeholder="ID del producto" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <!-- Información del producto -->
+    <div id="productoInfo" style="display:none; margin-top:20px;">
+        <p><strong>ID:</strong> <span id="infoId"></span></p>
+        <p><strong>Nombre:</strong> <span id="infoNombre"></span></p>
+        <p><strong>Descripción:</strong> <span id="infoDescripcion"></span></p>
+        <p><strong>Precio:</strong> $<span id="infoPrecio"></span></p>
+        <button id="btnEliminar">Eliminar Producto</button>
+    </div>
+
+    <!-- Archivo JS externo -->
+    <script src="eliminarProducto.js"></script>
+</body>
+</html>

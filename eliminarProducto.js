@@ -1,10 +1,21 @@
 let productoActual = null;
 
+// Escuchar el submit del formulario
+document.getElementById('buscarForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    buscarProducto();
+});
+
+// Escuchar el clic en el botón eliminar
+document.getElementById('btnEliminar').addEventListener('click', () => {
+    eliminarProducto();
+});
+
 async function buscarProducto() {
     const id = document.getElementById('buscarId').value;
 
     try {
-        const response = await fetch('http://localhost:3000/api/productos');
+        const response = await fetch('http://localhost:3000/api/productos'); // <-- Debe devolver JSON con productos
         const productos = await response.json();
 
         const producto = productos.find(p => p.id === parseInt(id));
@@ -16,14 +27,12 @@ async function buscarProducto() {
 
         productoActual = producto;
 
-        // Mostrar información del producto con conversión segura de precio
+        // Mostrar información del producto
         document.getElementById('infoId').textContent = producto.id;
         document.getElementById('infoNombre').textContent = producto.nombre;
         document.getElementById('infoDescripcion').textContent = producto.descripcion;
-        const precioNumerico = parseFloat(producto.precio);
-        document.getElementById('infoPrecio').textContent = isNaN(precioNumerico)
-            ? producto.precio
-            : precioNumerico.toFixed(2);
+        document.getElementById('infoPrecio').textContent = parseFloat(producto.precio).toFixed(2);
+
         document.getElementById('productoInfo').style.display = "block";
     } catch (error) {
         alert('Error al buscar producto: ' + error.message);
